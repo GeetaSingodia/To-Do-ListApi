@@ -1,0 +1,48 @@
+
+doctype html
+html
+  head
+    title To-Do List
+    link(rel='stylesheet', href='/styles.css')
+  body
+    h1 To-Do List
+
+    //- To-Dos Section
+    if todos.length
+      h2 To-Dos
+      ul
+        each todo in todos
+          li #{todo.id}: #{todo.title} - #{todo.category}
+    else
+      p No to-dos available.
+
+    //- Form to create a new To-Do
+    h2 Create a To-Do
+    form(action='/todos', method='post')
+      label(for='id') ID:
+      input(type='text', name='id', required)
+      br
+      label(for='title') Title:
+      input(type='text', name='title', required)
+      br
+      label(for='category') Category:
+      input(type='text', name='category', required)
+      br
+      button(type='submit') Add To-Do
+
+    //- Categories Section
+    if categories.length
+      h2 Categories
+      ul
+        each category in categories
+          li #{category}
+    else
+      p No categories available.
+
+    //- Form to create a new Category
+    h2 Create a Category
+    form(action='/categories', method='post')
+      label(for='name') Name:
+      input(type='text', name='name', required)
+      br
+      button(type='submit') Add Category
